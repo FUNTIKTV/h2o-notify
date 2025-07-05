@@ -1,95 +1,172 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: linear-gradient(to bottom, #64cbe5, #837de2);
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  background: linear-gradient(to bottom, #66d3fa, #867cf5);
 }
 
 h1 {
   color: white;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 24px;
 }
 
-.circle {
+#waterCircle {
   position: relative;
   width: 200px;
   height: 200px;
-  margin: 0 auto;
+  background-color: white;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  background: white;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden; /* ключ для хвилі */
 }
 
-.wave-svg {
+#percentage {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-}
-
-.water-text {
-  position: relative;
-  z-index: 1;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#percent {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 28px;
   font-weight: bold;
+  color: black;
 }
 
-#litres {
-  font-size: 14px;
-  color: #333;
+#amountText {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #555;
 }
 
-.buttons, .goal, .reset {
-  margin-top: 20px;
+#wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: floatUp 5s linear infinite;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1.2);
+  }
+  100% {
+    bottom: 100%;
+    opacity: 0;
+    transform: translateY(-100px) scale(0.8);
+  }
+}
+
+#buttonsContainer {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 300px;
 }
 
 button {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: rgba(255, 255, 255, 0.4);
+  padding: 10px 16px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
   border: none;
   border-radius: 10px;
-  font-weight: bold;
-  color: #fff;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  color: #333;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-input {
-  padding: 6px;
-  border-radius: 5px;
+button:active {
+  transform: scale(0.95);
+}
+
+#goalInputContainer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+input[type="number"] {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 80px;
+}
+
+#resetButton {
+  margin-top: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
   border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-@media (max-width: 600px) {
-  .circle {
-    width: 180px;
-    height: 180px;
+#resetButton:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 20px;
   }
-  #percent {
-    font-size: 22px;
+
+  #waterCircle {
+    width: 160px;
+    height: 160px;
   }
-  #litres {
-    font-size: 12px;
+
+  #percentage {
+    font-size: 24px;
   }
-  button {
-    padding: 8px;
+
+  #amountText {
     font-size: 14px;
-    width: 100px;
-    margin: 6px;
   }
-  .goal input {
-    width: 60px;
+
+  button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  input[type="number"] {
+    width: 70px;
+    font-size: 13px;
+  }
+
+  #resetButton {
+    font-size: 13px;
+    padding: 8px 16px;
   }
 }
