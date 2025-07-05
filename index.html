@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Облік води</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Облік води</h1>
+
   <div class="circle">
-    <div class="wave-wrapper">
-      <svg class="wave" viewBox="0 0 200 100" preserveAspectRatio="none">
-        <path d="M0 30 Q50 0 100 30 T200 30 V100 H0 Z" fill="#4fc3f7"/>
-      </svg>
-    </div>
-    <div class="progress-info">
-      <div id="percentage">0%</div>
-      <div id="volume-text">0 мл із 3000 мл</div>
+    <svg viewBox="0 0 200 200" class="wave-svg">
+      <defs>
+        <clipPath id="clipCircle">
+          <circle cx="100" cy="100" r="100" />
+        </clipPath>
+      </defs>
+      <g clip-path="url(#clipCircle)">
+        <path id="wave" d="" fill="#4FC3F7" />
+      </g>
+    </svg>
+    <div class="water-text">
+      <div id="percent">0%</div>
+      <div id="litres">0 мл із 3000 мл</div>
     </div>
   </div>
 
@@ -29,8 +34,8 @@
   </div>
 
   <div class="goal">
-    <label>Ціль (мл):</label>
-    <input type="number" id="goalInput" value="3000">
+    <label for="goal">Ціль (мл):</label>
+    <input type="number" id="goal" value="3000" />
     <button onclick="setGoal()">Зберегти ціль</button>
   </div>
 
