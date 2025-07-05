@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Облік води 💧</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -20,6 +20,7 @@
           <path id="wave" fill="#4cc6ff" d="" />
         </g>
       </svg>
+      <div class="bubbles" id="bubbles"></div>
       <div class="percentage" id="percentage">0%</div>
       <div class="amount" id="amountText">0 мл із 3000 мл</div>
     </div>
@@ -39,10 +40,9 @@
     </div>
 
     <div class="reset">
-      <button onclick="resetWater()">Скинути воду зараз</button>
+      <button type="button" onclick="resetWater()">Скинути воду зараз</button>
     </div>
   </div>
-
   <script src="main.js"></script>
 </body>
 </html>

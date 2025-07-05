@@ -25,28 +25,43 @@ h1 {
   width: 200px;
   height: 200px;
   margin: 0 auto 20px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 svg {
   width: 200px;
   height: 200px;
-  transform: rotate(180deg);
+  transform: rotate(0deg);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .percentage {
   position: absolute;
-  top: 40%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 26px;
   font-weight: bold;
   color: #000;
+  z-index: 2;
 }
 
 .amount {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 14px;
   color: #444;
-  margin-top: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 2px 6px;
+  z-index: 2;
 }
 
 .buttons {
@@ -70,6 +85,7 @@ svg {
 
 .goal-section {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -86,4 +102,40 @@ svg {
 .reset button {
   background-color: #fff;
   color: #333;
+}
+
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  background: #ffffff88;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: rise 4s linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.5);
+    opacity: 0;
+  }
 }

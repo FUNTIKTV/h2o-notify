@@ -13,16 +13,13 @@ function updateUI() {
   percentageText.textContent = `${Math.round(percent)}%`;
   amountText.textContent = `${currentAmount} мл із ${goal} мл`;
 
-  const waveHeight = 200 - (percent * 2); // 200 — SVG height
-  const waveCurve = 20;
-
-  // Проста хвиля
+  const waveHeight = 200 - (percent * 2);
+  const waveCurve = 12;
   wavePath.setAttribute(
     "d",
     `M0,${waveHeight} Q50,${waveHeight - waveCurve} 100,${waveHeight} T200,${waveHeight} V200 H0 Z`
   );
 
-  // Зберігаємо стан
   localStorage.setItem("currentAmount", currentAmount);
   localStorage.setItem("goal", goal);
 }
@@ -48,4 +45,19 @@ function resetWater() {
   }
 }
 
+function createBubble() {
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+
+  const size = Math.random() * 8 + 4;
+  bubble.style.width = size + "px";
+  bubble.style.height = size + "px";
+  bubble.style.left = Math.random() * 100 + "%";
+  bubble.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+  document.getElementById("bubbles").appendChild(bubble);
+  setTimeout(() => bubble.remove(), 5000);
+}
+
+setInterval(createBubble, 600);
 updateUI();
