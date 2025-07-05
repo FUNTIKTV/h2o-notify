@@ -7,8 +7,7 @@ function updateUI() {
   document.getElementById("volume-text").innerText = `${current} мл із ${goal} мл`;
 
   const wave = document.querySelector(".wave");
-  const translateY = 100 - percent;
-  wave.style.transform = `translateY(${translateY}%)`;
+  wave.style.height = `${percent}%`;
 }
 
 function addWater(amount) {
