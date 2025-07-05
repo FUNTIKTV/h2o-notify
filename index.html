@@ -2,45 +2,45 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <title>Облік води</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Облік води 💧</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Облік води</h1>
-
-  <div class="circle">
-    <svg viewBox="0 0 200 200" class="wave-svg">
-      <defs>
-        <clipPath id="clipCircle">
-          <circle cx="100" cy="100" r="100" />
-        </clipPath>
-      </defs>
-      <g clip-path="url(#clipCircle)">
-        <path id="wave" d="" fill="#4FC3F7" />
-      </g>
-    </svg>
-    <div class="water-text">
-      <div id="percent">0%</div>
-      <div id="litres">0 мл із 3000 мл</div>
+  <div class="container">
+    <h1>Облік води</h1>
+    <div class="circle">
+      <svg viewBox="0 0 200 200">
+        <defs>
+          <clipPath id="clipCircle">
+            <circle cx="100" cy="100" r="100" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#clipCircle)">
+          <path id="wave" fill="#4cc6ff" d="" />
+        </g>
+      </svg>
+      <div class="percentage" id="percentage">0%</div>
+      <div class="amount" id="amountText">0 мл із 3000 мл</div>
     </div>
-  </div>
 
-  <div class="buttons">
-    <button onclick="addWater(150)">150 мл</button>
-    <button onclick="addWater(250)">250 мл</button>
-    <button onclick="addWater(400)">400 мл</button>
-    <button onclick="addWater(600)">600 мл</button>
-    <button onclick="addWater(1000)">1000 мл</button>
-  </div>
+    <div class="buttons">
+      <button onclick="addWater(150)">150 мл</button>
+      <button onclick="addWater(250)">250 мл</button>
+      <button onclick="addWater(400)">400 мл</button>
+      <button onclick="addWater(600)">600 мл</button>
+      <button onclick="addWater(1000)">1000 мл</button>
+    </div>
 
-  <div class="goal">
-    <label for="goal">Ціль (мл):</label>
-    <input type="number" id="goal" value="3000" />
-    <button onclick="setGoal()">Зберегти ціль</button>
-  </div>
+    <div class="goal-section">
+      <label for="goal">Ціль (мл):</label>
+      <input type="number" id="goal" value="3000" />
+      <button onclick="saveGoal()">Зберегти ціль</button>
+    </div>
 
-  <div class="reset">
-    <button onclick="confirmReset()">Скинути воду зараз</button>
+    <div class="reset">
+      <button onclick="resetWater()">Скинути воду зараз</button>
+    </div>
   </div>
 
   <script src="main.js"></script>
