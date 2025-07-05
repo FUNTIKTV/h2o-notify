@@ -44,3 +44,16 @@ function updateWave(percent) {
 }
 
 updateUI();
+
+// При завантаженні сторінки
+window.addEventListener("load", () => {
+  const savedWater = localStorage.getItem("water_current");
+  const savedGoal = localStorage.getItem("water_goal");
+  if (savedWater !== null) water = parseInt(savedWater);
+  if (savedGoal !== null) target = parseInt(savedGoal);
+  updateUI();
+});
+
+// Всередині addWater(), setGoal(), confirmReset():
+localStorage.setItem("water_current", water);
+localStorage.setItem("water_goal", target);
