@@ -2,35 +2,45 @@ let current = 0;
 let goal = 3000;
 
 function updateUI() {
-  const percent = Math.min(100, Math.round((current / goal) * 100));
-  document.getElementById("percentage").innerText = `${percent}%`;
-  document.getElementById("volume-text").innerText = `${current} мл із ${goal} мл`;
-
-  const wave = document.querySelector(".wave");
-  wave.style.height = `${percent}%`;
+  const percent = Math.min((current / goal) * 100, 100);
+  document.getElementById('percent').textContent = `${Math.floor(percent)}%`;
+  document.getElementById('litres').textContent = `${current} мл із ${goal} мл`;
+  updateWave(percent);
 }
 
 function addWater(amount) {
   current += amount;
-  if (current > goal) current = goal;
   updateUI();
 }
 
 function setGoal() {
-  const newGoal = parseInt(document.getElementById("goalInput").value);
-  if (!isNaN(newGoal) && newGoal > 0) {
-    goal = newGoal;
-    if (current > goal) current = goal;
+  const value = parseInt(document.getElementById('goal').value);
+  if (!isNaN(value) && value > 0) {
+    goal = value;
+    current = 0;
     updateUI();
   }
 }
 
 function confirmReset() {
-  const sure = confirm("Ти точно хочеш скинути воду?");
-  if (sure) {
+  if (confirm("Точно скинути воду?")) {
     current = 0;
     updateUI();
   }
+}
+
+// Створення хвилі
+function updateWave(percent) {
+  const height = 200 - (percent / 100) * 200;
+  const waveHeight = 10;
+  const path = `
+    M 0 ${height}
+    C 50 ${height - waveHeight}, 150 ${height + waveHeight}, 200 ${height}
+    L 200 200
+    L 0 200
+    Z
+  `;
+  document.getElementById('wave').setAttribute('d', path);
 }
 
 updateUI();
