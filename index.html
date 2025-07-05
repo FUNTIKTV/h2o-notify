@@ -2,49 +2,42 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>H2O Notify</title>
+  <title>Облік води</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="main.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Облік води</h1>
-
-    <div class="circle-wrapper">
-      <div class="circle">
-        <div class="wave-container">
-          <svg viewBox="0 0 200 100" preserveAspectRatio="none" class="wave" id="wave">
-            <path d="M0,30 Q50,60 100,30 T200,30 V100 H0 Z" fill="#4db8ff"></path>
-          </svg>
-          <div class="bubbles">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-        <div class="text">
-          <div id="progress">0%</div>
-          <div id="volume">0 мл із 3000 мл</div>
-        </div>
-      </div>
+  <h1>Облік води</h1>
+  <div class="circle">
+    <div class="wave-wrapper">
+      <svg class="wave" viewBox="0 0 200 100" preserveAspectRatio="none">
+        <path d="M0 30 Q50 0 100 30 T200 30 V100 H0 Z" fill="#4fc3f7"/>
+      </svg>
     </div>
-
-    <div class="buttons">
-      <button onclick="addWater(150)">150 мл</button>
-      <button onclick="addWater(250)">250 мл</button>
-      <button onclick="addWater(400)">400 мл</button>
-      <button onclick="addWater(600)">600 мл</button>
-      <button onclick="addWater(1000)">1000 мл</button>
-    </div>
-
-    <div class="settings">
-      <label for="target">Ціль (мл):</label>
-      <input type="number" id="target" value="3000">
-      <button onclick="updateTarget()">Зберегти ціль</button>
-    </div>
-
-    <div class="reset">
-      <button onclick="resetWater()">Скинути воду зараз</button>
+    <div class="progress-info">
+      <div id="percentage">0%</div>
+      <div id="volume-text">0 мл із 3000 мл</div>
     </div>
   </div>
+
+  <div class="buttons">
+    <button onclick="addWater(150)">150 мл</button>
+    <button onclick="addWater(250)">250 мл</button>
+    <button onclick="addWater(400)">400 мл</button>
+    <button onclick="addWater(600)">600 мл</button>
+    <button onclick="addWater(1000)">1000 мл</button>
+  </div>
+
+  <div class="goal">
+    <label>Ціль (мл):</label>
+    <input type="number" id="goalInput" value="3000">
+    <button onclick="setGoal()">Зберегти ціль</button>
+  </div>
+
+  <div class="reset">
+    <button onclick="confirmReset()">Скинути воду зараз</button>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
