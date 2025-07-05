@@ -71,3 +71,25 @@ input {
   border-radius: 5px;
   border: none;
 }
+
+@media (max-width: 600px) {
+  .circle {
+    width: 180px;
+    height: 180px;
+  }
+  #percent {
+    font-size: 22px;
+  }
+  #litres {
+    font-size: 12px;
+  }
+  button {
+    padding: 8px;
+    font-size: 14px;
+    width: 100px;
+    margin: 6px;
+  }
+  .goal input {
+    width: 60px;
+  }
+}
