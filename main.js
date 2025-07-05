@@ -1,59 +1,51 @@
-let current = 0;
-let goal = 3000;
+let currentAmount = parseInt(localStorage.getItem("currentAmount")) || 0;
+let goal = parseInt(localStorage.getItem("goal")) || 3000;
+
+const percentageText = document.getElementById("percentage");
+const amountText = document.getElementById("amountText");
+const wavePath = document.getElementById("wave");
+const goalInput = document.getElementById("goal");
+
+goalInput.value = goal;
 
 function updateUI() {
-  const percent = Math.min((current / goal) * 100, 100);
-  document.getElementById('percent').textContent = `${Math.floor(percent)}%`;
-  document.getElementById('litres').textContent = `${current} мл із ${goal} мл`;
-  updateWave(percent);
+  const percent = Math.min((currentAmount / goal) * 100, 100);
+  percentageText.textContent = `${Math.round(percent)}%`;
+  amountText.textContent = `${currentAmount} мл із ${goal} мл`;
+
+  const waveHeight = 200 - (percent * 2); // 200 — SVG height
+  const waveCurve = 20;
+
+  // Проста хвиля
+  wavePath.setAttribute(
+    "d",
+    `M0,${waveHeight} Q50,${waveHeight - waveCurve} 100,${waveHeight} T200,${waveHeight} V200 H0 Z`
+  );
+
+  // Зберігаємо стан
+  localStorage.setItem("currentAmount", currentAmount);
+  localStorage.setItem("goal", goal);
 }
 
 function addWater(amount) {
-  current += amount;
+  currentAmount += amount;
   updateUI();
 }
 
-function setGoal() {
-  const value = parseInt(document.getElementById('goal').value);
-  if (!isNaN(value) && value > 0) {
-    goal = value;
-    current = 0;
+function saveGoal() {
+  const newGoal = parseInt(goalInput.value);
+  if (!isNaN(newGoal) && newGoal > 0) {
+    goal = newGoal;
+    if (currentAmount > goal) currentAmount = goal;
     updateUI();
   }
 }
 
-function confirmReset() {
-  if (confirm("Точно скинути воду?")) {
-    current = 0;
+function resetWater() {
+  if (confirm("Скинути прогрес води?")) {
+    currentAmount = 0;
     updateUI();
   }
-}
-
-// Створення хвилі
-function updateWave(percent) {
-  const height = 200 - (percent / 100) * 200;
-  const waveHeight = 10;
-  const path = `
-    M 0 ${height}
-    C 50 ${height - waveHeight}, 150 ${height + waveHeight}, 200 ${height}
-    L 200 200
-    L 0 200
-    Z
-  `;
-  document.getElementById('wave').setAttribute('d', path);
 }
 
 updateUI();
-
-// При завантаженні сторінки
-window.addEventListener("load", () => {
-  const savedWater = localStorage.getItem("water_current");
-  const savedGoal = localStorage.getItem("water_goal");
-  if (savedWater !== null) current = parseInt(savedWater);
-  if (savedGoal !== null) goal = parseInt(savedGoal);
-  updateUI();
-});
-
-// Всередині addWater(), setGoal(), confirmReset():
-localStorage.setItem("water_current", current);
-localStorage.setItem("water_goal", goal);
