@@ -1,5 +1,7 @@
+
 let currentAmount = parseInt(localStorage.getItem("currentAmount")) || 0;
 let goal = parseInt(localStorage.getItem("goal")) || 3000;
+let lastResetDate = localStorage.getItem("lastResetDate");
 
 const percentageText = document.getElementById("percentage");
 const amountText = document.getElementById("amountText");
@@ -42,6 +44,7 @@ function resetWater() {
   if (confirm("Скинути прогрес води?")) {
     currentAmount = 0;
     updateUI();
+    localStorage.setItem("lastResetDate", getTodayDate());
   }
 }
 
@@ -59,5 +62,32 @@ function createBubble() {
   setTimeout(() => bubble.remove(), 5000);
 }
 
+// Повертає дату в форматі YYYY-MM-DD
+function getTodayDate() {
+  const now = new Date();
+  return now.toISOString().split("T")[0];
+}
+
+// Автоматичне скидання води о 3:00
+function checkAutoReset() {
+  const now = new Date();
+  const hours = now.getHours();
+
+  const today = getTodayDate();
+
+  if (hours >= 3 && lastResetDate !== today) {
+    currentAmount = 0;
+    localStorage.setItem("lastResetDate", today);
+    updateUI();
+  }
+}
+
+// Telegram WebApp підтримка (опціонально, якщо є WebApp init data)
+if (window.Telegram && Telegram.WebApp) {
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+}
+
 setInterval(createBubble, 600);
+checkAutoReset();
 updateUI();
