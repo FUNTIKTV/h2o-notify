@@ -1,31 +1,31 @@
-!DOCTYPE html
-html lang=uk
-head
-  meta charset=UTF-8
-  titleH2O Notifytitle
-  meta name=viewport content=width=device-width, initial-scale=1.0
-  link rel=stylesheet href=style.css
-  script src=main.js deferscript
-head
-body
-  div class=container
-    h1Облік водиh1
-    div id=circle
-      div id=progress0%div
-      div id=volume0 мл із 3000 млdiv
-    div
-    div class=buttons
-      button onclick=addWater(150)150 млbutton
-      button onclick=addWater(250)250 млbutton
-      button onclick=addWater(400)400 млbutton
-      button onclick=addWater(600)600 млbutton
-      button onclick=addWater(1000)1000 млbutton
-    div
-    div class=settings
-      label for=targetЦіль (мл)label
-      input type=number id=target value=3000
-      button onclick=updateTarget()Зберегти цільbutton
-    div
-  div
-body
-html
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>H2O Notify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Облік води</h1>
+    <div id="circle">
+      <div id="progress">0%</div>
+      <div id="volume">0 мл із 3000 мл</div>
+    </div>
+    <div class="buttons">
+      <button onclick="addWater(150)">150 мл</button>
+      <button onclick="addWater(250)">250 мл</button>
+      <button onclick="addWater(400)">400 мл</button>
+      <button onclick="addWater(600)">600 мл</button>
+      <button onclick="addWater(1000)">1000 мл</button>
+    </div>
+    <div class="settings">
+      <label for="target">Ціль (мл):</label>
+      <input type="number" id="target" value="3000">
+      <button onclick="updateTarget()">Зберегти ціль</button>
+    </div>
+  </div>
+</body>
+</html>
