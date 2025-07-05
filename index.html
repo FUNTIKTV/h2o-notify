@@ -2,17 +2,17 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <title>Облік води</title>
+  <title>Облік води — H2O Notify</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Облік води</h1>
 
   <div class="circle">
-    <svg viewBox="0 0 200 200" class="wave-svg">
+    <svg viewBox="0 0 400 200" class="wave-svg">
       <defs>
         <clipPath id="clipCircle">
-          <circle cx="100" cy="100" r="100" />
+          <circle cx="200" cy="100" r="100" />
         </clipPath>
       </defs>
       <g clip-path="url(#clipCircle)">
@@ -23,6 +23,7 @@
       <div id="percent">0%</div>
       <div id="litres">0 мл із 3000 мл</div>
     </div>
+    <div id="bubbles-container"></div>
   </div>
 
   <div class="buttons">
