@@ -8,8 +8,8 @@ function updateUI() {
   document.getElementById("target").value = target;
 
   const wave = document.getElementById("wave");
-  const waveHeight = 100 - percent;
-  wave.style.transform = `translateY(${waveHeight}%)`;
+  const height = 100 - percent;
+  wave.style.transform = `translateY(${height}%)`;
 }
 
 function addWater(amount) {
@@ -23,6 +23,15 @@ function updateTarget() {
   target = document.getElementById("target").value;
   localStorage.setItem("target", target);
   updateUI();
+}
+
+function resetWater() {
+  const confirmReset = confirm("Ти точно хочеш скинути воду?");
+  if (confirmReset) {
+    water = 0;
+    localStorage.setItem("water", 0);
+    updateUI();
+  }
 }
 
 function autoResetIfNewDay() {
