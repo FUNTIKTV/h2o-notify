@@ -1,52 +1,37 @@
-let water = 0;
-let target = localStorage.getItem("target") || 3000;
+let current = 0;
+let goal = 3000;
 
 function updateUI() {
-  const percent = Math.min(Math.round((water / target) * 100), 100);
-  document.getElementById("progress").textContent = `${percent}%`;
-  document.getElementById("volume").textContent = `${water} мл із ${target} мл`;
-  document.getElementById("target").value = target;
+  const percent = Math.min(100, Math.round((current / goal) * 100));
+  document.getElementById("percentage").innerText = `${percent}%`;
+  document.getElementById("volume-text").innerText = `${current} мл із ${goal} мл`;
 
-  const wave = document.getElementById("wave");
-  const height = 100 - percent;
-  wave.style.transform = `translateY(${height}%)`;
+  const wave = document.querySelector(".wave");
+  const translateY = 100 - percent;
+  wave.style.transform = `translateY(${translateY}%)`;
 }
 
 function addWater(amount) {
-  water += amount;
-  if (water > target) water = target;
-  localStorage.setItem("water", water);
+  current += amount;
+  if (current > goal) current = goal;
   updateUI();
 }
 
-function updateTarget() {
-  target = document.getElementById("target").value;
-  localStorage.setItem("target", target);
-  updateUI();
-}
-
-function resetWater() {
-  const confirmReset = confirm("Ти точно хочеш скинути воду?");
-  if (confirmReset) {
-    water = 0;
-    localStorage.setItem("water", 0);
+function setGoal() {
+  const newGoal = parseInt(document.getElementById("goalInput").value);
+  if (!isNaN(newGoal) && newGoal > 0) {
+    goal = newGoal;
+    if (current > goal) current = goal;
     updateUI();
   }
 }
 
-function autoResetIfNewDay() {
-  const lastDate = localStorage.getItem("lastDate");
-  const today = new Date().toDateString();
-  if (lastDate !== today) {
-    water = 0;
-    localStorage.setItem("water", 0);
-    localStorage.setItem("lastDate", today);
-  } else {
-    water = parseInt(localStorage.getItem("water") || "0");
+function confirmReset() {
+  const sure = confirm("Ти точно хочеш скинути воду?");
+  if (sure) {
+    current = 0;
+    updateUI();
   }
 }
 
-window.onload = () => {
-  autoResetIfNewDay();
-  updateUI();
-};
+updateUI();
