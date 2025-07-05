@@ -10,9 +10,14 @@
 <body>
   <div class="container">
     <h1>Облік води</h1>
-    <div id="circle">
-      <div id="progress">0%</div>
-      <div id="volume">0 мл із 3000 мл</div>
+    <div class="circle-wrapper">
+      <div class="circle">
+        <div class="wave" id="wave"></div>
+        <div class="text">
+          <div id="progress">0%</div>
+          <div id="volume">0 мл із 3000 мл</div>
+        </div>
+      </div>
     </div>
     <div class="buttons">
       <button onclick="addWater(150)">150 мл</button>
