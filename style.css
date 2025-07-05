@@ -102,3 +102,12 @@ input[type="number"] {
   width: 100px;
   margin-left: 10px;
 }
+
+@keyframes waveAnim {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
